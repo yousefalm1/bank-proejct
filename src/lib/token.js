@@ -3,21 +3,21 @@ import 'server-only';
 import { jwtDecode } from 'jwt-decode';
 import { cookies } from 'next/headers';
 
-export const setToken = async (token) => {
+export async function setToken(token) {
   const cookieStore = await cookies();
   cookieStore.set('token', token);
-};
+}
 
-export const getToken = async () => {
+export async function getToken() {
   const cookieStore = await cookies();
   const token = cookieStore.get('token')?.value;
   return token;
-};
+}
 
-export const deleteToken = async () => {
+export async function deleteToken() {
   const cookieStore = await cookies();
   cookieStore.delete('token');
-};
+}
 
 export async function getUser() {
   const token = await getToken();
@@ -34,7 +34,6 @@ export async function getUser() {
 
     return user;
   } catch (error) {
-    console.error(error);
     return null;
   }
 }

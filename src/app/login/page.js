@@ -1,4 +1,4 @@
-import { login } from '@/actions/auth/login';
+import { login } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -21,7 +21,7 @@ const Login = () => {
           <div className="mb-6">
             <Input
               type="password"
-              name="passwords"
+              name="password"
               required
               placeholder="Enter Password"
             />

@@ -1,14 +1,13 @@
-// Handles user login by sending a POST request with credentials to authenticate the user.
 'use server';
-import { baseUrl, getHeaders } from '@/actions/config';
 
 import { setToken } from '@/lib/token';
+import { baseUrl, getHeaders } from '../config';
 import { redirect } from 'next/navigation';
 
-export const login = async (formData) => {
+export async function login(formData) {
   const userData = Object.fromEntries(formData);
 
-  const response = await fetch(`${baseUrl}/mini-project/api/auth/login`, {
+  const response = await fetch(`${baseUrl}/mini-project/api/login`, {
     method: 'POST',
     headers: await getHeaders(),
     body: JSON.stringify(userData),
@@ -18,4 +17,4 @@ export const login = async (formData) => {
   await setToken(token);
 
   redirect('/');
-};
+}

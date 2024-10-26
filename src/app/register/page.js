@@ -1,4 +1,4 @@
-import { register } from '@/actions/auth/register';
+import { register } from '@/actions/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -22,7 +22,7 @@ const Register = () => {
           <div className="mb-6">
             <Input
               type="password"
-              name="passwords"
+              name="password"
               required
               placeholder="Enter Password"
             />
@@ -30,7 +30,7 @@ const Register = () => {
 
           <div className="grid w-full max-w-sm items-center gap-1.5 mb-6">
             <Label htmlFor="picture">Profile Image</Label>
-            <Input type="file" required name="image" />
+            <Input type="file" name="image" required />
           </div>
 
           <div>

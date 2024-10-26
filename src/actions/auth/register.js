@@ -1,26 +1,18 @@
 // Handles user registration by sending a POST request with user data to create a new account.
-
 'use server';
 
-import { setToken } from '@/lib/token';
+import { redirect } from 'next/navigation';
 import { baseUrl } from '@/actions/config';
+import { setToken } from '@/lib/token';
 
-export const register = async (formData) => {
-  try {
-    const response = await fetch(`${baseUrl}/mini-project/api/auth/register`, {
-      method: 'POST',
-      body: formData,
-    });
+export async function register(formData) {
+  const response = await fetch(`${baseUrl}/mini-project/api/auth/register`, {
+    method: 'POST',
+    body: formData,
+  });
 
-    if (!response.ok) {
-      throw new Error(`Registration failed with status ${response.status}`);
-    }
+  const { token } = await response.json();
+  await setToken(token);
 
-    const { token } = await response.json();
-    await setToken(token);
-
-    console.log('Registration successful');
-  } catch (error) {
-    console.error('Registration error:', error);
-  }
-};
+  redirect('/');
+}
