@@ -2,7 +2,16 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import ThemeToggle from '../ThemeToggle';
+import ThemeToggle from '@/components/ThemeToggle';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
 // import ProfileMenu from './ProfileMenu';
 
 const Navbar = () => {
@@ -27,14 +36,14 @@ const Navbar = () => {
         <div className="hidden md:flex items-center space-x-6">
           <Link
             href="/"
-            className=" text-foreground bg-border   rounded-md px-3 py-2 text-base font-semibold "
+            className=" text-foreground bg-border rounded-md px-3 py-2 text-base font-semibold "
             aria-current="page"
           >
             Home
           </Link>
           <Link
             href="/transactions"
-            className="rounded-md px-3 py-2 text-base font-semibold text-primary bg-transparent hover:text-foreground hover:bg-highlight"
+            className="rounded-md px-3 py-2 text-base font-semibold text-primary bg-transparent hover:text-foreground hover:bg-secondary"
           >
             Transactions
           </Link>
@@ -44,6 +53,7 @@ const Navbar = () => {
           >
             Users
           </Link>
+          <ThemeToggle />
         </div>
 
         {/* Profile Menu (Visible on larger screens) */}
@@ -63,21 +73,33 @@ const Navbar = () => {
 
           {/* Dropdown menu */}
           {isProfileMenuOpen && (
-            <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-border py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <Link
-                href="/profile"
-                className="block px-4 py-2 text-base text-foreground hover:bg-highlight rounded-md transition duration-200"
-              >
-                Your Profile
-              </Link>
+            <DropdownMenu>
+              <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>Billing</DropdownMenuItem>
+                <DropdownMenuItem>Team</DropdownMenuItem>
+                <DropdownMenuItem>Subscription</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
-              <a
-                href="#"
-                className="block px-4 py-2 text-base text-foreground hover:bg-highlight rounded-md transition duration-200"
-              >
-                Sign out
-              </a>
-            </div>
+            // <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-border py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            //   <Link
+            //     href="/profile"
+            //     className="block px-4 py-2 text-base text-foreground hover:bg-highlight rounded-md transition duration-200"
+            //   >
+            //     Your Profile
+            //   </Link>
+
+            //   <a
+            //     href="#"
+            //     className="block px-4 py-2 text-base text-foreground hover:bg-highlight rounded-md transition duration-200"
+            //   >
+            //     Sign out
+            //   </a>
+            // </div>
           )}
         </div>
 
