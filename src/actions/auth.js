@@ -14,6 +14,7 @@ export async function login(formData) {
   });
 
   const { token } = await response.json();
+  console.log(token);
   await setToken(token);
 
   redirect('/dashboard');
@@ -35,10 +36,4 @@ export async function logout() {
   await deleteToken();
   // Where should you redirect the user?
   redirect(`/`);
-}
-
-export async function getAllUsers() {
-  const response = await fetch(`${baseUrl}/auth/users`);
-  const users = response.json();
-  return users;
 }
