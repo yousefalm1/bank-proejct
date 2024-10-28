@@ -1,8 +1,12 @@
 import { NextResponse } from 'next/server';
 import { getUser } from './lib/token';
 
-const privateRoutes = ['/user', '/notes'];
-const publicRoutes = ['/login', '/register'];
+const privateRoutes = [
+  '/dashboard/users',
+  '/dashboard/transactions',
+  '/dashboard/profiles',
+];
+const publicRoutes = ['/login', '/register', '/'];
 
 export default async function middleware(req) {
   const path = req.nextUrl.pathname;
@@ -12,7 +16,7 @@ export default async function middleware(req) {
 
   // Redirect to `/login` if a page is private!
   if (isPublicRoute && user)
-    return NextResponse.redirect(new URL('/notes', req.nextUrl));
+    return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
   // Redirect to `/notes` if a page is public-only
 
   if (isPrivateRoute && !user) {

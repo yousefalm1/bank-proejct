@@ -2,6 +2,7 @@
 
 import { baseUrl, getHeaders } from '@/actions/config';
 import { setToken, deleteToken } from '@/lib/token';
+import { redirect } from 'next/navigation';
 
 export async function login(formData) {
   const userData = Object.fromEntries(formData);
@@ -14,9 +15,8 @@ export async function login(formData) {
 
   const { token } = await response.json();
   await setToken(token);
-  console.log(token);
 
-  console.log(response);
+  redirect('/dashboard');
 }
 
 export async function register(formData) {
