@@ -1,6 +1,7 @@
-import './globals.css';
-import { ThemeProvider } from './providers/theme-provider';
-import DashboardNavbar from '@/components/Navbar/DashboardNavbar';
+import Footer from "@/components/footer/Footer";
+import "./globals.css";
+import { ThemeProvider } from "./providers/theme-provider";
+import DashboardNavbar from "@/components/Navbar/DashboardNavbar";
 
 export const metadata = {
   title: 'Masraf',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
           <main className="flex flex-col items-center justify-center   ">
             {children}
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
