@@ -1,4 +1,5 @@
-import { getProfile } from '@/actions/getProfile';
+import { getProfile } from "@/actions/getProfile";
+import DepositForm from "@/components/deposit/depositForm";
 
 const Dashboard = async () => {
   const user = await getProfile();
@@ -14,6 +15,7 @@ const Dashboard = async () => {
       </div>
       <div className="bg-blue-300 h-64">
         <h1>1/3 Width</h1>
+        <DepositForm />
       </div>
 
       <div></div>
