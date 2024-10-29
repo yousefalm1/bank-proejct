@@ -1,4 +1,5 @@
-import { getProfile } from '@/actions/getProfile';
+import { getProfile } from "@/actions/getProfile";
+import WithdrawForm from "@/components/withdraw/withdrawForm";
 
 const Dashboard = async () => {
   const user = await getProfile();
@@ -15,8 +16,9 @@ const Dashboard = async () => {
       <div className="bg-blue-300 h-64">
         <h1>1/3 Width</h1>
       </div>
-
-      <div></div>
+      <div>
+        <WithdrawForm />
+      </div>
     </div>
   );
 };
