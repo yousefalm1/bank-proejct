@@ -1,3 +1,5 @@
+import Footer from "@/components/footer/Footer";
+
 import "./globals.css";
 import { ThemeProvider } from "./providers/theme-provider";
 import DashboardNavbar from "@/components/Navbar/DashboardNavbar";
@@ -26,6 +28,7 @@ export default function RootLayout({ children }) {
           <main className="flex flex-col items-center justify-center min-h-[90vh]">
             {children}
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
