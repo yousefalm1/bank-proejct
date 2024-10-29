@@ -9,8 +9,8 @@ Link;
 
 const Login = () => {
   return (
-    <div className="max-w-lg mx-auto mt-[-150px] ">
-      <div className="flex flex-col justify-start items-center">
+    <div className="max-w-lg mx-auto mt-52  ">
+      <div className="flex flex-col justify-center items-center">
         <div>
           <Image
             src={Logo}
