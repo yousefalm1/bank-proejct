@@ -48,7 +48,10 @@ const Login = () => {
             className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl py-6 mt-5"
           />
 
-          <Button className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl text-base py-6 font-medium mt-8">
+          <Button
+            type="submit"
+            className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl text-base py-6 font-medium mt-8"
+          >
             Sign in
           </Button>
         </form>
