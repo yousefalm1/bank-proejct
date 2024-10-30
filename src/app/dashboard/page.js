@@ -1,4 +1,3 @@
-import { getProfile } from '@/actions/getProfile';
 import { GetAllUsers } from '@/actions/users/getAllUsers';
 import { getTransactions } from '@/actions/transactions/getTransactions';
 import { Card } from '@/components/ui/card';
@@ -7,6 +6,8 @@ import UsersCreditCard from '@/components/dashboard/UsersCreditCard';
 import TransactionHistoryTable from '@/components/dashboard/TransactionHistoryTable';
 import WelcomeSection from '@/components/dashboard/WelcomeSection';
 import MyLineChart from '@/components/MyLineChart';
+import { getProfile } from "@/actions/getProfile";
+import DepositForm from "@/components/deposit/depositForm";
 
 const Dashboard = async () => {
   const user = await getProfile();
@@ -58,7 +59,8 @@ const Dashboard = async () => {
         <Card className="bg-background h-full shadow-lg border border-border">
           <MyLineChart labels={labels} datasets={datasets} />
         </Card>
-      </div>
+
+   
     </>
   );
 };
