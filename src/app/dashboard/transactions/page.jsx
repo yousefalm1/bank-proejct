@@ -8,10 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import { getProfile } from '@/actions/getProfile';
 import { format } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
 
 const Transactions = async () => {
   const transactions = await getTransactions();
+  const user = await getProfile();
 
   return (
     <div className="flex justify-center mt-7 w-3/4 p-6 rounded-lg shadow-lg bg-background text-foreground">
@@ -49,11 +52,25 @@ const Transactions = async () => {
               >
                 {transaction._id}
               </TableCell>
-              <TableCell className="p-4 text-card-foreground capitalize">
-                {transaction.type || 'N/A'}
+              <TableCell className="p-4 bottom-0">
+                <Badge
+                  className={
+                    transaction.type === 'deposit'
+                      ? 'bg-green-400 text-background'
+                      : 'bg-red-400 text-background'
+                  }
+                >
+                  {transaction.type}
+                </Badge>
               </TableCell>
               <TableCell className="p-4 text-right text-card-foreground font-semibold">
-                ${transaction.amount.toFixed(2)}
+                {' '}
+                {new Intl.NumberFormat('en-KW', {
+                  style: 'decimal',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }).format(user.balance)}{' '}
+                KWD
               </TableCell>
               <TableCell className="p-4 text-right text-card-foreground">
                 {transaction.createdAt
