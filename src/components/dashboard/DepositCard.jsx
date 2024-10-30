@@ -12,29 +12,31 @@ import { depositFunds } from '@/actions/transactions/deposit';
 
 const DepositCard = () => {
   return (
-    <Card className="h-64 shadow-lg border bg-background border-border">
+    <Card className="h-72 md:h-80 lg:h-90 shadow-lg border border-border bg-background p-2 md:p-6 lg:p-8">
       <CardHeader>
-        <h2 className="text-xl font-semibold text-foreground ">
+        <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground">
           Deposit Funds
         </h2>
-        <CardDescription className="text-sm text-muted-foreground">
+        <CardDescription className="text-xs md:text-sm lg:text-base text-muted-foreground">
           Safely deposit funds into your account.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form action={depositFunds}>
-          <Label>Amount</Label>
+          <Label className="text-sm md:text-base">Amount</Label>
           <Input
             type="text"
             name="amount"
             placeholder="Enter amount"
             required
-            className="border border-border "
+            className="border border-border w-full p-2 md:p-3 lg:p-4 rounded-lg"
           />
-          <Button type="submit" className="mt-4 w-full bg-foreground">
+          <Button
+            type="submit"
+            className="mt-4 w-full bg-foreground py-2 md:py-3 lg:py-4 rounded-lg text-sm md:text-base lg:text-lg"
+          >
             Deposit
           </Button>
-          ;
         </form>
       </CardContent>
     </Card>

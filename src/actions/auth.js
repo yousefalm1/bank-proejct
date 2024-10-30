@@ -14,7 +14,6 @@ export async function login(formData) {
   });
 
   const { token } = await response.json();
-  console.log(token);
   await setToken(token);
 
   redirect('/dashboard');
@@ -25,10 +24,10 @@ export async function register(formData) {
     method: 'POST',
     body: formData,
   });
-  console.log(response);
 
   const { token } = await response.json();
   await setToken(token);
+  redirect('/dashboard');
 }
 
 export async function logout() {

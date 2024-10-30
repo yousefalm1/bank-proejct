@@ -16,4 +16,5 @@ export const transferFunds = async (formData, username) => {
   );
 
   revalidatePath('/dashboard/users');
+  revalidatePath('/dashboard');
 };

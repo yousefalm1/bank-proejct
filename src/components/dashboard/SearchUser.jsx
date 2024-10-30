@@ -19,7 +19,7 @@ import {
 } from '@/components/ui/command';
 import { Badge } from '@/components/ui/badge';
 
-const UserSearchWithAlertDialog = ({ users }) => {
+const UserSearchWithAlertDialog = ({ users, setSelectedUser }) => {
   const [isAlertDialogOpen, setIsAlertDialogOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -31,7 +31,6 @@ const UserSearchWithAlertDialog = ({ users }) => {
 
   const handleCommandInputChange = (e) => {
     setSearchTerm(e.target.value);
-    console.log(e.target);
   };
 
   const filteredUsers = users.filter((user) =>
@@ -39,7 +38,7 @@ const UserSearchWithAlertDialog = ({ users }) => {
   );
 
   return (
-    <div className="w-full  mx-auto">
+    <div className="w-full ">
       {/* Main search input that opens the AlertDialog */}
       <Input
         placeholder="🔍 Search username..."
@@ -51,7 +50,7 @@ const UserSearchWithAlertDialog = ({ users }) => {
 
       {/* AlertDialog containing the Command component for typing and searching */}
       <AlertDialog open={isAlertDialogOpen} onOpenChange={setIsAlertDialogOpen}>
-        <AlertDialogContent className="max-w-lg mx-auto bg-background p-6 rounded-lg shadow-lg">
+        <AlertDialogContent className=" mx-auto bg-background p-6 rounded-lg shadow-lg">
           <AlertDialogHeader>
             <AlertDialogTitle>Search Users</AlertDialogTitle>
           </AlertDialogHeader>
@@ -67,8 +66,11 @@ const UserSearchWithAlertDialog = ({ users }) => {
                 <CommandGroup heading="Users">
                   {filteredUsers.map((user) => (
                     <CommandItem
-                      key={user._id}
-                      onSelect={() => console.log(user.username)}
+                      key={user._id + 'khdbkf'}
+                      onSelect={() => {
+                        setSelectedUser(user);
+                        closeAlertDialog();
+                      }}
                     >
                       {user.username}
                     </CommandItem>

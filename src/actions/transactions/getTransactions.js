@@ -9,7 +9,6 @@ export const getTransactions = async () => {
     headers: await getHeaders(),
   });
 
-  console.log(response);
   const transactions = await response.json();
   return transactions;
 };

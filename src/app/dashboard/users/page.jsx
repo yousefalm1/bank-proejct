@@ -1,6 +1,7 @@
 import { GetAllUsers } from '@/actions/users/getAllUsers';
 import UserCards from '@/components/Users/UserCards';
 import { getProfile } from '@/actions/getProfile';
+import FavoriteDialog from '@/components/Users/FavoriteDialog';
 import {
   Table,
   TableBody,
@@ -79,6 +80,7 @@ const ViewAllUsers = async () => {
                 <span className="text-foreground ">
                   {new Intl.NumberFormat('en-KW', {
                     style: 'decimal',
+                    notation: 'compact',
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2,
                   }).format(user.balance)}{' '}
@@ -88,6 +90,7 @@ const ViewAllUsers = async () => {
               <TableCell className="text-right">
                 <div className="flex justify-end space-x-2">
                   <TransferDialog user={user} profile={profile} />
+                  <FavoriteDialog user={user} />
                 </div>
               </TableCell>
             </TableRow>

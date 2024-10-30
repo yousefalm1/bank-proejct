@@ -9,6 +9,5 @@ export const getUserById = async (id) => {
     headers: await getHeaders(),
   });
   const user = await response.json();
-  console.log(user);
   return user;
 };
