@@ -19,7 +19,7 @@ const TransactionsPage = ({ transactions }) => {
   const [searchFilters, setSearchFilters] = useState({
     amount: "",
     from: "",
-    to: "",
+    type: "",
   });
 
   useEffect(() => {
@@ -33,24 +33,23 @@ const TransactionsPage = ({ transactions }) => {
   useEffect(() => {
     setFilteredTransactions(
       transactions.filter((transaction) => {
-        const { amount, from, to } = searchFilters;
+        const { amount, from, type } = searchFilters;
         const transactionDate = new Date(transaction.createdAt);
         const fromDate = from ? new Date(from) : null;
-        const toDate = to ? new Date(to) : null;
 
         const matchesAmount = amount
           ? transaction.amount.toString().includes(amount)
           : true;
         const matchesFromDate = fromDate ? transactionDate >= fromDate : true;
-        const matchesToDate = toDate ? transactionDate <= toDate : true;
+        const matchesType = type ? transaction.type === type : true;
 
-        return matchesAmount && matchesFromDate && matchesToDate;
+        return matchesAmount && matchesFromDate && matchesType;
       })
     );
   }, [searchFilters, transactions]);
   return (
     <div className="flex flex-col justify-center mt-7 w-3/4 p-6 rounded-lg shadow-lg bg-background text-foreground">
-      <SearchTransaction onSearchChange={setSearchFilters} />
+      <SearchTransaction className="mb-4" onSearchChange={setSearchFilters} />
       <Table className="border border-border rounded-md overflow-hidden shadow-sm">
         <TableCaption className="text-lg font-semibold text-foreground pb-4">
           A list of your recent transactions.
