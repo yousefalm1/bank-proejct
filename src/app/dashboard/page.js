@@ -1,3 +1,4 @@
+
 import { GetAllUsers } from '@/actions/users/getAllUsers';
 import { getTransactions } from '@/actions/transactions/getTransactions';
 import { Card } from '@/components/ui/card';
@@ -53,6 +54,7 @@ const Dashboard = async () => {
 
         <UsersCreditCard user={user} />
       </div>
+    </div>
       <SendingMoneyContainer />
       <div className="grid w-full  grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 px-32 mt-10">
         <TransactionHistoryTable transactions={transactions} />

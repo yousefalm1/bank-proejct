@@ -1,5 +1,5 @@
-import { Input } from '@/components/ui/input';
-import { transferFunds } from '@/actions/transactions/transfer';
+import { Input } from "@/components/ui/input";
+import { transferFunds } from "@/actions/transactions/transfer";
 
 const TransferModalForm = ({
   user,
