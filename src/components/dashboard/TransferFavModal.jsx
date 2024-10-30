@@ -11,14 +11,11 @@ import {
   AlertDialogAction,
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import TransferFavModalForm from './TransferFavForm';
 
-import TransferModalForm from './TransferModalForm';
-
-export function TransferDialog({ user, profile }) {
+export function TransferFavModal({ favorite, profile }) {
   const [transferAmount, setTransferAmount] = useState('');
 
-  // Calculate remaining balance and handle fallback for invalid input
   const remainingBalance = profile.balance - (parseFloat(transferAmount) || 0);
 
   const handleTransferChange = (e) => {
@@ -38,7 +35,7 @@ export function TransferDialog({ user, profile }) {
           <div className="space-y-6 mt-4">
             <div>
               <p className="text-lg font-medium text-muted-foreground">
-                {user.username}’s Current Balance
+                {favorite.username}’s Current Balance
               </p>
               <p className="text-3xl font-bold text-primary mt-1">
                 {new Intl.NumberFormat('en-KW', {
@@ -46,7 +43,7 @@ export function TransferDialog({ user, profile }) {
                   notation: 'compact',
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
-                }).format(user.balance)}{' '}
+                }).format(favorite.balance)}{' '}
                 KWD
               </p>
             </div>
@@ -55,8 +52,8 @@ export function TransferDialog({ user, profile }) {
               <p className="text-lg font-medium text-muted-foreground">
                 Amount to Transfer
               </p>
-              <TransferModalForm
-                user={user}
+              <TransferFavModalForm
+                favorite={favorite}
                 handleTransferChange={handleTransferChange}
                 transferAmount={transferAmount}
                 remainingBalance={remainingBalance}
@@ -75,7 +72,12 @@ export function TransferDialog({ user, profile }) {
               >
                 {remainingBalance < 0
                   ? 'Insufficient funds'
-                  : `${remainingBalance.toFixed(2)} KD`}
+                  : `${new Intl.NumberFormat('en-KW', {
+                      style: 'decimal',
+                      notation: 'compact',
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    }).format(remainingBalance.balance)} KWD`}
               </p>
             </div>
           </div>
@@ -100,4 +102,4 @@ export function TransferDialog({ user, profile }) {
   );
 }
 
-export default TransferDialog;
+export default TransferFavModal;

@@ -5,11 +5,11 @@ import { Label } from '../ui/label';
 
 const UsersCreditCard = ({ user }) => {
   return (
-    <div className="h-72 cursor-pointer">
+    <div className="p-4 md:p-6 lg:p-8">
       <div>
         <Link href="/dashboard/profile">
           <div className="space-y-20">
-            <div className="relative m-auto h-60 w-80 rounded-2xl bg-background shadow-2xl text-foreground transition-transform sm:h-72 sm:w-[32rem] sm:hover:scale-105 hidden md:block">
+            <div className="relative m-auto rounded-2xl bg-background shadow-2xl text-foreground transition-transform sm:h-72 sm:w-[32rem] sm:hover:scale-105 hidden md:block">
               <div className="absolute top-6 w-full px-12 sm:top-10">
                 <div className="flex justify-between">
                   <div>

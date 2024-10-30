@@ -1,7 +1,7 @@
-"use client";
-import { useState, useEffect } from "react";
-import SearchTransaction from "@/components/searchTransaction/SearchTransaction";
-import { getTransactions } from "@/actions/transactions/getTransactions";
+'use client';
+import { useState, useEffect } from 'react';
+import SearchTransaction from '@/components/searchTransaction/SearchTransaction';
+import { getTransactions } from '@/actions/transactions/getTransactions';
 import {
   Table,
   TableBody,
@@ -10,16 +10,16 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import { format } from "date-fns";
-
-const TransactionsPage = ({ transactions }) => {
+} from '@/components/ui/table';
+import { format } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+const TransactionsPage = ({ transactions, keyPrefix = '12323424s' }) => {
   const [filteredTransactions, setFilteredTransactions] =
     useState(transactions);
   const [searchFilters, setSearchFilters] = useState({
-    amount: "",
-    from: "",
-    type: "",
+    amount: '',
+    from: '',
+    type: '',
   });
 
   useEffect(() => {
@@ -73,9 +73,9 @@ const TransactionsPage = ({ transactions }) => {
         <TableBody>
           {filteredTransactions.map((transaction, index) => (
             <TableRow
-              key={transaction._id}
+              key={keyPrefix + transaction._id}
               className={`${
-                index % 2 === 0 ? "bg-card" : "bg-muted"
+                index % 2 === 0 ? 'bg-card' : 'bg-muted'
               } hover:bg-background  text-foreground border-b border-border`}
             >
               <TableCell
@@ -84,19 +84,33 @@ const TransactionsPage = ({ transactions }) => {
               >
                 {transaction._id}
               </TableCell>
-              <TableCell className="p-4 text-card-foreground capitalize">
-                {transaction.type || "N/A"}
+              <TableCell>
+                <Badge
+                  className={`${
+                    transaction.type === 'deposit'
+                      ? 'bg-green-500'
+                      : 'bg-red-500'
+                  }`}
+                >
+                  {transaction.type}
+                </Badge>
               </TableCell>
               <TableCell className="p-4 text-right text-card-foreground font-semibold">
-                ${transaction.amount.toFixed(2)}
+                {new Intl.NumberFormat('en-KW', {
+                  style: 'decimal',
+                  notation: 'compact',
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                }).format(transaction.amount)}{' '}
+                KWD
               </TableCell>
               <TableCell className="p-4 text-right text-card-foreground">
                 {transaction.createdAt
                   ? format(
                       new Date(transaction.createdAt),
-                      "MMM dd, yyyy, HH:mm"
+                      'MMM dd, yyyy, HH:mm'
                     )
-                  : "N/A"}
+                  : 'N/A'}
               </TableCell>
             </TableRow>
           ))}

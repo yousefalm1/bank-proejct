@@ -9,7 +9,16 @@ const UserDetails = async ({ params }) => {
   return (
     <div>
       <h1 className="text-2xl font-bold">{username}</h1>
-      <h2>{balance}</h2>
+      <h2>
+        {' '}
+        {new Intl.NumberFormat('en-KW', {
+          style: 'decimal',
+          notation: 'compact',
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(balance)}{' '}
+        KWD
+      </h2>
     </div>
   );
 };

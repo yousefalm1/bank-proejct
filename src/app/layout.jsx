@@ -1,7 +1,7 @@
-// import Footer from "@/components/footer/Footer";
 import './globals.css';
 import { ThemeProvider } from './providers/theme-provider';
 import DashboardNavbar from '@/components/Navbar/DashboardNavbar';
+import { GlobalStateProvider } from '@/app/context/GlobalStateContext';
 
 export const metadata = {
   title: 'Masraf',
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
           <div className="fixed dark:hidden inline-block top-0 z-[-2] h-full min-h-screen w-screen bg-white bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(200,200,255,0.5),rgba(100,100,150,0.2))]"></div>
           <DashboardNavbar />
           <main className="flex flex-col items-center justify-center   ">
-            {children}
+            <GlobalStateProvider>{children}</GlobalStateProvider>
           </main>
           {/* <Footer /> */}
         </ThemeProvider>
