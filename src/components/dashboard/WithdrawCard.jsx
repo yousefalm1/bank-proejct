@@ -8,6 +8,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { withdrawFunds } from '@/actions/transactions/withdraw';
 
 const WithdrawCard = () => {
   return (
@@ -21,7 +22,7 @@ const WithdrawCard = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form action={withdrawFunds}>
           <Label>Amount</Label>
           <Input
             type="text"
@@ -30,7 +31,9 @@ const WithdrawCard = () => {
             required
             className="border border-border"
           />
-          <Button className="mt-4 w-full bg-foreground">Withdraw</Button>
+          <Button type="submit" className="mt-4 w-full bg-foreground">
+            Withdraw
+          </Button>
         </form>
       </CardContent>
     </Card>
