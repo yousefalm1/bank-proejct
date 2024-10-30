@@ -1,14 +1,14 @@
-'use server';
+"use server";
 
-import { baseUrl, getHeaders } from '@/actions/config';
-import { setToken, deleteToken } from '@/lib/token';
-import { redirect } from 'next/navigation';
-
+import { baseUrl, getHeaders } from "@/actions/config";
+import { setToken, deleteToken } from "@/lib/token";
+import { redirect } from "next/navigation";
+import { registrationSchema } from "@/app/register/register-schema";
 export async function login(formData) {
   const userData = Object.fromEntries(formData);
 
   const response = await fetch(`${baseUrl}/mini-project/api/auth/login`, {
-    method: 'POST',
+    method: "POST",
     headers: await getHeaders(),
     body: JSON.stringify(userData),
   });
@@ -17,12 +17,29 @@ export async function login(formData) {
   console.log(token);
   await setToken(token);
 
-  redirect('/dashboard');
+  redirect("/dashboard");
 }
 
-export async function register(formData) {
+export async function register(state, formData) {
+  const validatedFields = registrationSchema.safeParse({
+    name: formData.get("username"),
+    password: formData.get("password"),
+  });
+
+  // If any form fields are invalid, return early
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+  if (!validatedFields.success) {
+    return {
+      errors: validatedFields.error.flatten().fieldErrors,
+    };
+  }
+
   const response = await fetch(`${baseUrl}/mini-project/api/auth/register`, {
-    method: 'POST',
+    method: "POST",
     body: formData,
   });
   console.log(response);

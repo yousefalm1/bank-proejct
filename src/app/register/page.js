@@ -1,12 +1,16 @@
-import { register } from '@/actions/auth';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import Link from 'next/link';
-import Image from 'next/image';
-import Logo from '@/app/assets/logo.jpg';
+"use client";
+import { register } from "@/actions/auth";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "@/app/assets/logo.jpg";
+import { useActionState } from "react";
 
 const Register = () => {
+  const [state, action] = useActionState(register, undefined);
+
   return (
     <div className="max-w-lg mx-auto mt-52  ">
       <div className="flex flex-col justify-center items-center">
@@ -20,10 +24,10 @@ const Register = () => {
           />
         </div>
         <h1 className="text-4xl font-medium text-center mt-10">
-          Join Masraf Today{' '}
+          Join Masraf Today{" "}
         </h1>
         <p className="text-gray-400 text-base text-center mt-2">
-          Already with us?{' '}
+          Already with us?{" "}
           <Link href="/login">
             <span className="text-foreground font-base hover:border-b hover:border-foreground">
               Let&apos;s login
@@ -31,7 +35,7 @@ const Register = () => {
           </Link>
         </p>
 
-        <form action={register} className=" mt-4">
+        <form action={action} className=" mt-4">
           <Input
             type="text"
             name="username"
@@ -39,6 +43,8 @@ const Register = () => {
             placeholder="Enter username"
             className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl py-6 mt-5"
           />
+          {state?.errors?.name && <p>{state.errors.name}</p>}
+
           <Input
             type="password"
             name="password"
@@ -46,6 +52,7 @@ const Register = () => {
             placeholder="Enter Password"
             className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl py-6 mt-5"
           />
+
           <Input
             type="file"
             name="image"
@@ -53,6 +60,17 @@ const Register = () => {
             className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl py-6 mt-5"
             placeholder="Choose a profile image"
           />
+          {state?.errors?.password && (
+            <div>
+              <p>Password must:</p>
+              <ul>
+                {state.errors.password.map((error) => (
+                  <li key={error}>- {error}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <Button
             type="submit"
             className="w-full sm:w-[380px] md:w-[400px] lg:w-[450px] rounded-2xl text-base py-6 font-medium mt-8"
@@ -80,41 +98,6 @@ const Register = () => {
         </h1>
       </div>
     </div>
-
-    // <div className="flex justify-center items-center mt-7">
-    //   <div className="">
-    //     <h1 className="font-bold text-center text-2xl mb-6">Register Form</h1>
-
-    //     <form action={register}>
-    //       <div className="mb-6">
-    //         <Input
-    //           type="text"
-    //           name="username"
-    //           required
-    //           placeholder="Enter username"
-    //         />
-    //       </div>
-
-    //       <div className="mb-6">
-    //         <Input
-    //           type="password"
-    //           name="password"
-    //           required
-    //           placeholder="Enter Password"
-    //         />
-    //       </div>
-
-    //       <div className="grid w-full max-w-sm items-center gap-1.5 mb-6">
-    //         <Label htmlFor="picture">Profile Image</Label>
-    //         <Input type="file" name="image" required />
-    //       </div>
-
-    //       <div>
-    //         <Button type="submit"> Submit </Button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 };
 
