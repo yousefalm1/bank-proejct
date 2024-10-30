@@ -1,8 +1,8 @@
-import { baseUrl } from '@/actions/config';
-import { getProfile } from '@/actions/getProfile';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+import { baseUrl } from "@/actions/config";
+import { getProfile } from "@/actions/getProfile";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
 const ViewProfile = async () => {
   const profile = await getProfile();
@@ -19,21 +19,23 @@ const ViewProfile = async () => {
       <h2 className="text-2xl text-gray-600 mb-4 p-2">
         Balance: {profile.balance}
       </h2>
-      <div className="grid w-full max-w-xs items-center gap-1.5">
+      <form
+        action={"TODO"}
+        className="grid w-full max-w-xs items-center gap-1.5"
+      >
         <Label className="text-sm text-gray-400 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Picture
         </Label>
-        <input
+        <Input
           id="picture"
-          type="file"
+          name="image"
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm text-gray-400 file:border-0 file:bg-transparent file:text-gray-600 file:text-sm file:font-medium"
         />
         <div></div>
         <Button className="flex justify-center items-center  border    ">
           Save
         </Button>
-      </div>
-      
+      </form>
     </div>
   );
 };
