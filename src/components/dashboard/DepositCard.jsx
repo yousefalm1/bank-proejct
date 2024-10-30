@@ -8,6 +8,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { depositFunds } from '@/actions/transactions/deposit';
 
 const DepositCard = () => {
   return (
@@ -21,7 +22,7 @@ const DepositCard = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form>
+        <form action={depositFunds}>
           <Label>Amount</Label>
           <Input
             type="text"
@@ -30,7 +31,10 @@ const DepositCard = () => {
             required
             className="border border-border "
           />
-          <Button className="mt-4 w-full bg-foreground">Deposit</Button>
+          <Button type="submit" className="mt-4 w-full bg-foreground">
+            Deposit
+          </Button>
+          ;
         </form>
       </CardContent>
     </Card>

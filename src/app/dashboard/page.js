@@ -6,8 +6,8 @@ import UsersCreditCard from '@/components/dashboard/UsersCreditCard';
 import TransactionHistoryTable from '@/components/dashboard/TransactionHistoryTable';
 import WelcomeSection from '@/components/dashboard/WelcomeSection';
 import MyLineChart from '@/components/MyLineChart';
-import { getProfile } from "@/actions/getProfile";
-import DepositForm from "@/components/deposit/depositForm";
+import { getProfile } from '@/actions/getProfile';
+import DepositForm from '@/components/deposit/depositForm';
 
 const Dashboard = async () => {
   const user = await getProfile();
@@ -47,21 +47,21 @@ const Dashboard = async () => {
   };
 
   return (
-    <>
+    <div>
       <div className="grid w-full grid-cols-1 md:grid-cols-[2fr_1fr] gap-6 mt-14 px-32">
         <WelcomeSection user={user} users={users} />
 
         <UsersCreditCard user={user} />
       </div>
+
       <SendingMoneyContainer />
-      <div className="grid w-full  grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 px-32 mt-10">
+      <div className="grid w-full grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 px-32 mt-10">
         <TransactionHistoryTable transactions={transactions} />
         <Card className="bg-background h-full shadow-lg border border-border">
           <MyLineChart labels={labels} datasets={datasets} />
         </Card>
-
-   
-    </>
+      </div>
+    </div>
   );
 };
 
