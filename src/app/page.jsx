@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <motion.main
-      className="flex items-center flex-col  justify-center p-6"
+      className="flex items-center mt-96 justify-center p-6"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -69,7 +69,8 @@ export default function Home() {
             </h1>
 
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Experience a modern and secure way to manage your finances.
+              Discover a secure, seamless, and modern approach to managing your
+              wealth with confidence and ease.
             </p>
           </motion.header>
 
