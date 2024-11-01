@@ -19,6 +19,7 @@ const TransactionsPage = ({ transactions, keyPrefix = '12323424s' }) => {
   const [searchFilters, setSearchFilters] = useState({
     amount: '',
     from: '',
+    to: '',
     type: '',
   });
 
@@ -33,17 +34,20 @@ const TransactionsPage = ({ transactions, keyPrefix = '12323424s' }) => {
   useEffect(() => {
     setFilteredTransactions(
       transactions.filter((transaction) => {
-        const { amount, from, type } = searchFilters;
+        const { amount, from, to, type } = searchFilters;
         const transactionDate = new Date(transaction.createdAt);
         const fromDate = from ? new Date(from) : null;
+        const toDate = to ? new Date(to) : null;
 
         const matchesAmount = amount
           ? transaction.amount.toString().includes(amount)
           : true;
         const matchesFromDate = fromDate ? transactionDate >= fromDate : true;
+        const matchesToDate = toDate ? transactionDate >= toDate : true;
+
         const matchesType = type ? transaction.type === type : true;
 
-        return matchesAmount && matchesFromDate && matchesType;
+        return matchesAmount && matchesFromDate && matchesToDate && matchesType;
       })
     );
   }, [searchFilters, transactions]);
@@ -73,7 +77,7 @@ const TransactionsPage = ({ transactions, keyPrefix = '12323424s' }) => {
         <TableBody>
           {filteredTransactions.map((transaction, index) => (
             <TableRow
-              key={keyPrefix + transaction._id}
+              key={transaction._id}
               className={`${
                 index % 2 === 0 ? 'bg-card' : 'bg-muted'
               } hover:bg-background  text-foreground border-b border-border`}

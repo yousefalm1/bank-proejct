@@ -14,10 +14,8 @@ export default async function middleware(req) {
   const isPrivateRoute = privateRoutes.includes(path);
   const user = await getUser();
 
-  // Redirect to `/login` if a page is private!
   if (isPublicRoute && user)
     return NextResponse.redirect(new URL('/dashboard', req.nextUrl));
-  // Redirect to `/notes` if a page is public-only
 
   if (isPrivateRoute && !user) {
     return NextResponse.redirect(new URL('/login', req.nextUrl));

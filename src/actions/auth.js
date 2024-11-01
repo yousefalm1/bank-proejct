@@ -31,8 +31,6 @@ export async function register(formData) {
 }
 
 export async function logout() {
-  // What do you need to do to logout?
   await deleteToken();
-  // Where should you redirect the user?
   redirect(`/`);
 }

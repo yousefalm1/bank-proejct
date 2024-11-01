@@ -29,26 +29,15 @@ function MainDashboard({ user, users, transactions, baseUrl }) {
       <SendingMoneyContainer />
       <div className="grid w-full grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-[2fr_1fr] gap-8 px-32 mt-10">
         <TransactionHistoryTable transactions={transactions} />
-
         <Card className="bg-background h-full shadow-lg border border-border p-4 md:p-4 lg:p-4">
           <CardHeader>
             <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground">
               Favorites
             </h2>
           </CardHeader>
-          <CardContent>
-            <div className=" overflow-y-auto">
+          <CardContent className="p-0">
+            <div className="overflow-y-auto max-h-60">
               <Table className="border border-border rounded-lg overflow-hidden shadow-lg">
-                {/* <TableHeader>
-                  <TableRow>
-                    <TableHead className="px-4 py-2 text-left text-sm font-semibold text-foreground">
-                      User
-                    </TableHead>
-                    <TableHead className="px-4 py-2 text-sm font-semibold text-foreground">
-                      Actions
-                    </TableHead>
-                  </TableRow>
-                </TableHeader> */}
                 <TableBody>
                   {favorites.map((favorite) => (
                     <TableRow

@@ -10,5 +10,5 @@ export const getTransactions = async () => {
   });
 
   const transactions = await response.json();
-  return transactions;
+  return transactions.reverse();
 };

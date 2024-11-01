@@ -12,9 +12,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-imp;
 
-const ViewAllUsersComponent = ({ users, profile }) => {
+import { Input } from '@/components/ui/input';
+
+const ViewAllUsersComponent = ({ users, profile, baseUrl }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearchChange = (e) => {
@@ -26,13 +27,12 @@ const ViewAllUsersComponent = ({ users, profile }) => {
   );
 
   return (
-    <div className="flex flex-col items-center mt-7 w-full md:w-3/4 p-6 rounded-lg shadow-lg bg-background text-foreground">
-      <input
+    <div className="flex flex-col items-center mt-7 w-full bg-background  p-6 rounded-lg shadow-lg text-foreground">
+      <Input
         type="text"
-        placeholder="Search by username"
+        placeholder="🔍 Search by username"
         value={searchTerm}
         onChange={handleSearchChange}
-        className="mb-4 p-2 border border-gray-300 rounded w-full md:w-1/2"
       />
       <Table>
         <TableCaption className="text-lg font-semibold">

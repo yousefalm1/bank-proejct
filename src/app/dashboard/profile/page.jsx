@@ -8,7 +8,7 @@ const ViewProfile = async () => {
   const profile = await getProfile();
 
   return (
-    <div className="flex flex-col items-center mt-7 p-5 bg-background rounded-lg shadow-lg w-3/4 max-w-sm ">
+    <div className="flex flex-col items-center mt-28 p-5 bg-background rounded-lg shadow-lg w-3/4 max-w-sm ">
       <Avatar className="w-48 h-48 p-3">
         <AvatarImage
           src={`${baseUrl}/${profile.image}`}
@@ -33,7 +33,6 @@ const ViewProfile = async () => {
           Save
         </Button>
       </div>
-      
     </div>
   );
 };

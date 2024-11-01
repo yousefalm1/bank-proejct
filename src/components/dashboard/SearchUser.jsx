@@ -26,7 +26,7 @@ const UserSearchWithAlertDialog = ({ users, setSelectedUser }) => {
   const openAlertDialog = () => setIsAlertDialogOpen(true);
   const closeAlertDialog = () => {
     setIsAlertDialogOpen(false);
-    setSearchTerm(''); // Clear the search term when closing
+    setSearchTerm('');
   };
 
   const handleCommandInputChange = (e) => {
@@ -39,16 +39,14 @@ const UserSearchWithAlertDialog = ({ users, setSelectedUser }) => {
 
   return (
     <div className="w-full ">
-      {/* Main search input that opens the AlertDialog */}
       <Input
         placeholder="🔍 Search username..."
-        onClick={openAlertDialog} // Open modal on click
-        readOnly // Prevent typing here
+        onClick={openAlertDialog}
+        readOnly
         className="mb-4 w-full py-7 shadow-lg"
         usePointer
       />
 
-      {/* AlertDialog containing the Command component for typing and searching */}
       <AlertDialog open={isAlertDialogOpen} onOpenChange={setIsAlertDialogOpen}>
         <AlertDialogContent className=" mx-auto bg-background p-6 rounded-lg shadow-lg">
           <AlertDialogHeader>

@@ -1,14 +1,10 @@
-// pages/index.jsx
-
 'use client';
 
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 export default function Home() {
-  // Animation variants for container
   const containerVariants = {
     hidden: { opacity: 0, y: -50, scale: 0.95 },
     visible: {
@@ -24,7 +20,6 @@ export default function Home() {
     },
   };
 
-  // Animation variants for child elements
   const childVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: {
@@ -37,7 +32,6 @@ export default function Home() {
     },
   };
 
-  // Button hover effects
   const buttonHover = {
     scale: 1.05,
     boxShadow: '0px 15px 30px rgba(0, 0, 0, 0.1)',
@@ -50,7 +44,7 @@ export default function Home() {
 
   return (
     <motion.main
-      className="flex items-center mt-96 justify-center p-6"
+      className="flex items-center mt-80 justify-center p-6"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

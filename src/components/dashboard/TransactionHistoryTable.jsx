@@ -31,7 +31,7 @@ import { Maximize2 } from 'lucide-react';
 import { Button } from '../ui/button';
 
 const TransactionHistoryTable = ({ transactions }) => {
-  const latestFiveTransactions = transactions.slice(-5);
+  const latestFiveTransactions = transactions.slice(0, 3);
 
   return (
     <Card className="bg-background h-full shadow-lg border border-border p-4 md:p-4 lg:p-4">
@@ -41,7 +41,6 @@ const TransactionHistoryTable = ({ transactions }) => {
             History
           </h2>
 
-          {/* Show All Transactions Trigger */}
           <AlertDialog>
             <AlertDialogTrigger asChild className="cursor-pointer">
               <CardDescription>
@@ -51,7 +50,6 @@ const TransactionHistoryTable = ({ transactions }) => {
               </CardDescription>
             </AlertDialogTrigger>
 
-            {/* Full Transaction History Modal */}
             <AlertDialogContent className="max-w-lg md:max-w-xl lg:max-w-2xl bg-background p-4 md:p-6 lg:p-8 rounded-lg shadow-lg max-h-[90vh]">
               <AlertDialogHeader>
                 <AlertDialogTitle className="text-lg md:text-xl lg:text-2xl font-semibold text-foreground">
@@ -62,7 +60,6 @@ const TransactionHistoryTable = ({ transactions }) => {
                 </AlertDialogDescription>
               </AlertDialogHeader>
 
-              {/* Scrollable container for the table */}
               <div className="overflow-y-auto max-h-[60vh] mt-4">
                 <Table className="border border-border rounded-md overflow-hidden shadow-sm">
                   <TableHeader>
@@ -123,7 +120,6 @@ const TransactionHistoryTable = ({ transactions }) => {
         </div>
       </CardHeader>
 
-      {/* Display of Latest 5 Transactions */}
       <CardContent>
         <Table>
           <TableHeader>
